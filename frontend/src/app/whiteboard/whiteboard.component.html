@@ -1,3 +1,9 @@
+<app-whiteboard-toolbar 
+  (colorChange)="changeColor($event)"
+  (lineWidthChange)="changeLineWidth($event)"
+  (useEraserEvent)="activateEraser()">
+</app-whiteboard-toolbar>
+
 <canvas 
   #whiteboardCanvas 
   (mousedown)="startDrawing($event)" 

@@ -1,44 +1,50 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-whiteboard',
   templateUrl: './whiteboard.component.html',
-  styleUrls: ['./whiteboard.component.css'],
+  styleUrls: ['./whiteboard.component.css']
 })
-export class WhiteboardComponent {
-  isDrawing = false;
-
-  @ViewChild('whiteboardCanvas') canvasRef!: ElementRef;
+export class WhiteboardComponent implements AfterViewInit {
+  @ViewChild('whiteboardCanvas', { static: false }) canvasRef!: ElementRef;
   canvas!: HTMLCanvasElement;
   ctx!: CanvasRenderingContext2D;
+  isDrawing = false;
 
-  ngAfterViewInit(): void {
+  currentColor = '#000000';  // default color
+  currentTool = 'pen';  // default tool
+  currentEraserSize = 10;  // default eraser size
+
+  ngAfterViewInit() {
     this.canvas = this.canvasRef.nativeElement;
-    this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
-    this.ctx.lineWidth = 2;
+    this.ctx = this.canvas.getContext('2d')!;
+    this.ctx.lineWidth = 2;  // default line width
+    this.ctx.strokeStyle = this.currentColor;
     this.ctx.lineCap = 'round';
-    this.ctx.strokeStyle = '#000';
-
-    this.canvas.width = window.innerWidth * 0.8;
-    this.canvas.height = window.innerHeight * 0.8;
   }
 
-  startDrawing(event: MouseEvent): void {
-    const rect = this.canvas.getBoundingClientRect();
-    this.isDrawing = true;
-    this.ctx.beginPath();
-    this.ctx.moveTo(event.clientX - rect.left, event.clientY - rect.top);
+  changeColor(newColor: string) {
+    this.currentColor = newColor;
+    if (this.currentTool === 'pen') {
+      this.ctx.strokeStyle = this.currentColor;
+    }
   }
 
-  doDrawing(event: MouseEvent): void {
-    if (!this.isDrawing) return;
-    const rect = this.canvas.getBoundingClientRect();
-    this.ctx.lineTo(event.clientX - rect.left, event.clientY - rect.top);
-    this.ctx.stroke();
+  changeTool(newTool: string) {
+    this.currentTool = newTool;
+    if (newTool === 'pen') {
+      this.ctx.globalCompositeOperation = 'source-over';
+      this.ctx.strokeStyle = this.currentColor;
+    } else {
+      this.ctx.globalCompositeOperation = 'destination-out';
+      this.ctx.strokeStyle = 'rgba(0,0,0,1)';  // Eraser tool color, which is effectively the background color
+    }
   }
 
-  stopDrawing(): void {
-    this.isDrawing = false;
-    this.ctx.closePath();
+  changeEraserSize(newSize: number) {
+    this.currentEraserSize = newSize;
+    this.ctx.lineWidth = this.currentEraserSize;
   }
+
+  // ... (Rest of your methods like startDrawing, doDrawing, etc.)
 }

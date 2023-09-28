@@ -1,0 +1,17 @@
+.toolbar {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px; /* spacing between toolbar items */
+    padding: 10px;
+    background-color: #f7f7f7; /* light gray background */
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .tool-item {
+    margin: 0 5px; /* margin to space out tools */
+  }
+  .eraser-mode {
+    cursor: url('path_to_eraser_icon.png') 16 16, default;
+  }
+    

@@ -1,1 +1,36 @@
-<p>whiteboard-toolbar works!</p>
+<div class="toolbar">
+  <!-- Color Picker -->
+  <mat-form-field appearance="fill" class="tool-item">
+    <mat-label>Choose Color</mat-label>
+    <input
+      matInput
+      type="color"
+      [value]="selectedColor"
+      (change)="colorChanged($event)"
+      name="colorPicker"
+    />
+  </mat-form-field><div class="toolbar">
+
+    <!-- Color Picker -->
+    <mat-form-field appearance="fill" class="tool-item">
+      <mat-label>Choose Color</mat-label>
+      <input matInput type="color" [(ngModel)]="selectedColor" (change)="colorChanged()" name="colorPicker">
+    </mat-form-field>
+  
+    <!-- Eraser/Pen Mode Toggle Button -->
+    <button mat-button (click)="toggleEraserMode()">{{ isEraserMode ? 'Switch to Pen' : 'Switch to Eraser' }}</button>
+  
+    <!-- Eraser Size Selector (Visible only in Eraser mode) -->
+    <div class="tool-item" *ngIf="isEraserMode">
+      <span>Eraser Size: {{eraserSize}}</span>
+      <mat-slider min="1" max="50" step="1" [value]="eraserSize" (input)="adjustEraserSize($event)"></mat-slider>
+    </div>
+    
+  </div>
+  
+
+
+  <!-- Eraser Button -->
+  <button mat-button (click)="toggleEraserMode()">{{ isEraserMode ? 'Pen' : 'Eraser' }}</button>
+
+</div>
