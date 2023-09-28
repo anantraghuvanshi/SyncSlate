@@ -3,21 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LayoutComponent } from './layout/layout.component';
+import { WhiteboardComponent } from './whiteboard/whiteboard.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
+  {
+    path: '',
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-    ]
+    ],
   },
+  { path: 'whiteboard', component: WhiteboardComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

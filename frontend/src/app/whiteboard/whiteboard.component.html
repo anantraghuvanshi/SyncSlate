@@ -1,1 +1,7 @@
-<p>whiteboard works!</p>
+<canvas 
+  #whiteboardCanvas 
+  (mousedown)="startDrawing($event)" 
+  (mousemove)="doDrawing($event)" 
+  (mouseup)="stopDrawing()"
+  (mouseleave)="stopDrawing()">
+</canvas>
