@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { WhiteboardComponent } from './whiteboard/whiteboard.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RegisterComponent } from './register/register.component';
     LayoutComponent,
     LoginComponent,
     RegisterComponent,
+    WhiteboardComponent,
     
   ],
   imports: [
