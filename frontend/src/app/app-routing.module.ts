@@ -5,10 +5,15 @@ import { RegisterComponent } from './register/register.component';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  //{ path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '', component: LayoutComponent },
+  { 
+    path: '', 
+    component: LayoutComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+    ]
+  },
 ];
 
 @NgModule({
