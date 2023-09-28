@@ -12,6 +12,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { WhiteboardComponent } from './whiteboard/whiteboard.component';
+import { WhiteboardToolbarComponent } from './whiteboard-toolbar/whiteboard-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { WhiteboardComponent } from './whiteboard/whiteboard.component';
     LoginComponent,
     RegisterComponent,
     WhiteboardComponent,
+    WhiteboardToolbarComponent,
     
   ],
   imports: [
